@@ -3,33 +3,32 @@ package com.project.missingperson.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 
 @Entity
-@Table(name = "missing_persons")
-public class MissingPerson {
+@Table(name = "found_persons")
+public class FoundPerson {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "Name is required")
+
     private String name;
+
     @Min(value = 1, message = "Age must be greater than 0")
     private int age;
+
     @NotBlank(message = "Gender is required")
     private String gender;
-    @NotBlank(message = "Location is required")
-    private String location;
+
+    @NotBlank(message = "Found location is required")
+    private String foundLocation;
+
     @NotBlank(message = "Description is required")
     private String description;
-    @Pattern(
-            regexp = "^[0-9]{10}$",
-            message = "Phone number must contain exactly 10 digits"
-    )
-    private String photoPath;
-    private String phoneNumber;
 
-    public MissingPerson() {
+    private String photoPath;
+
+    public FoundPerson() {
     }
 
     public Long getId() {
@@ -64,12 +63,12 @@ public class MissingPerson {
         this.gender = gender;
     }
 
-    public String getLocation() {
-        return location;
+    public String getFoundLocation() {
+        return foundLocation;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setFoundLocation(String foundLocation) {
+        this.foundLocation = foundLocation;
     }
 
     public String getDescription() {
@@ -80,13 +79,6 @@ public class MissingPerson {
         this.description = description;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
     public String getPhotoPath() {
         return photoPath;
     }
